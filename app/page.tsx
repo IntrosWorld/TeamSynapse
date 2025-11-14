@@ -7,11 +7,10 @@ import Downloads from '@/components/Downloads'
 import Team from '@/components/Team'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
-import CustomCursor from '@/components/CustomCursor'
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden cursor-none">
+    <main className="relative min-h-screen overflow-hidden">
       {/* Animated Background Blobs - more prominent */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-accent-purple/20 rounded-full filter blur-[120px]"
@@ -47,7 +46,6 @@ export default function Home() {
           }} />
       </div>
 
-      <CustomCursor />
       <Navbar />
       <Hero />
       <div className="relative z-10">
