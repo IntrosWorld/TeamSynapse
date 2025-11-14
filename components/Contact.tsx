@@ -97,10 +97,11 @@ export default function Contact() {
                 </span>
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-accent-blue via-accent-purple to-accent-cyan"
+                  initial={{ scale: 1 }}
                   animate={
                     isSubmitted
                       ? { scale: [1, 1.5, 1] }
-                      : {}
+                      : { scale: 1 }
                   }
                   transition={{ duration: 0.6 }}
                 />
