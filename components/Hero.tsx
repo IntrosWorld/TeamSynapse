@@ -321,8 +321,6 @@ export default function Hero() {
             />
           </Suspense>
         </Canvas>
-        {/* Dark vignette overlay for better text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
       </div>
 
       {/* Content */}
@@ -333,68 +331,40 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.2 }}
           className="mb-8"
         >
-          <div className="inline-block px-6 py-2 glass rounded-full mb-6 backdrop-blur-md bg-black/30">
+          <div className="inline-block px-6 py-2 glass rounded-full mb-6">
             <span className="text-accent-cyan font-semibold">AI × Agriculture × Innovation</span>
           </div>
         </motion.div>
 
-        {/* Text container with backdrop */}
-        <div className="relative inline-block">
-          <div className="absolute inset-0 bg-black/20 backdrop-blur-sm rounded-3xl -m-8" />
+        <motion.h1
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight"
+          style={{
+            color: '#ffffff',
+            textShadow: '0 0 60px rgba(0, 0, 0, 1), 0 0 30px rgba(0, 0, 0, 0.9), 0 4px 10px rgba(0, 0, 0, 0.8), 0 0 100px rgba(0, 212, 255, 0.3)',
+            filter: 'drop-shadow(0 0 20px rgba(0, 0, 0, 0.9))'
+          }}
+        >
+          Offline AI for
+          <br />
+          Rural Empowerment
+        </motion.h1>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="relative text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight"
-            style={{
-              color: '#ffffff',
-              textShadow: `
-                0 0 80px rgba(0, 212, 255, 0.8),
-                0 0 40px rgba(139, 92, 246, 0.6),
-                0 4px 20px rgba(0, 0, 0, 0.9),
-                -2px -2px 0 rgba(0, 0, 0, 0.8),
-                2px -2px 0 rgba(0, 0, 0, 0.8),
-                -2px 2px 0 rgba(0, 0, 0, 0.8),
-                2px 2px 0 rgba(0, 0, 0, 0.8)
-              `,
-              WebkitTextStroke: '1px rgba(0, 212, 255, 0.3)'
-            }}
-          >
-            <span style={{
-              background: 'linear-gradient(135deg, #00d4ff 0%, #ffffff 50%, #8b5cf6 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}>
-              Offline AI for
-              <br />
-              Rural Empowerment
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="relative text-xl md:text-2xl lg:text-3xl mb-12 max-w-4xl mx-auto leading-relaxed"
-            style={{
-              color: '#ffffff',
-              textShadow: '0 2px 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.5)'
-            }}
-          >
-            Meet the team behind{' '}
-            <span style={{
-              background: 'linear-gradient(135deg, #00d4ff, #8b5cf6)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              fontWeight: 700
-            }}>
-              India's first offline farmer-query LLM
-            </span>
-          </motion.p>
-        </div>
+        <motion.p
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="text-xl md:text-2xl lg:text-3xl mb-12 max-w-4xl mx-auto leading-relaxed"
+          style={{
+            color: '#ffffff',
+            textShadow: '0 0 40px rgba(0, 0, 0, 1), 0 2px 10px rgba(0, 0, 0, 0.9)',
+            filter: 'drop-shadow(0 0 15px rgba(0, 0, 0, 0.9))'
+          }}
+        >
+          Meet the team behind <span className="gradient-text font-semibold">India's first offline farmer-query LLM</span>
+        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
