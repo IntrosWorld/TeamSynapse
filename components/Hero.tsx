@@ -285,6 +285,7 @@ function EnhancedNeuralNetwork() {
           </Sphere>
         )
       })}
+
     </group>
   )
 }
@@ -340,8 +341,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 gradient-text leading-tight"
-          style={{ textShadow: '0 0 40px rgba(0, 212, 255, 0.5)' }}
+          className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight"
+          style={{
+            color: 'rgba(240, 240, 240, 0.85)',
+            textShadow: '0 2px 10px rgba(0, 0, 0, 0.7), 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 212, 255, 0.15)'
+          }}
         >
           Offline AI for
           <br />
@@ -352,7 +356,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
+          className="text-xl md:text-2xl lg:text-3xl mb-12 max-w-4xl mx-auto leading-relaxed"
+          style={{
+            color: '#e0e0e0',
+            textShadow: '0 2px 8px rgba(0, 0, 0, 0.6), 0 4px 15px rgba(0, 0, 0, 0.4)'
+          }}
         >
           Meet the team behind <span className="gradient-text font-semibold">India's first offline farmer-query LLM</span>
         </motion.p>
@@ -364,10 +372,10 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <a
-            href="#projects"
+            href="#downloads"
             className="group relative inline-flex items-center gap-3 px-10 py-5 text-lg font-semibold glass rounded-full overflow-hidden hover:scale-105 transition-transform"
           >
-            <span className="relative z-10">Explore Projects</span>
+            <span className="relative z-10">Download App</span>
             <motion.span
               className="relative z-10 text-2xl"
               animate={{ x: [0, 5, 0] }}
