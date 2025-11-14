@@ -109,10 +109,77 @@ export default function About() {
 
   return (
     <section id="about" className="relative py-32 overflow-hidden bg-gradient-to-b from-primary-dark to-primary">
-      {/* Background decoration */}
+      {/* Animated Background decoration */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-accent-purple/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-accent-cyan/20 rounded-full blur-3xl" />
+        <motion.div
+          className="absolute top-1/4 right-0 w-96 h-96 bg-accent-purple/20 rounded-full blur-3xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 left-0 w-96 h-96 bg-accent-cyan/20 rounded-full blur-3xl"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, 50, 0],
+            scale: [1, 1.3, 1],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </div>
+
+      {/* Floating particles */}
+      <div className="absolute inset-0 overflow-hidden">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-accent-blue/30 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 4,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Animated grid lines */}
+      <div className="absolute inset-0 opacity-5">
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: 'linear-gradient(#00d4ff 1px, transparent 1px), linear-gradient(90deg, #00d4ff 1px, transparent 1px)',
+            backgroundSize: '50px 50px',
+          }}
+          animate={{
+            backgroundPosition: ['0px 0px', '50px 50px'],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">

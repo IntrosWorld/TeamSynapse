@@ -43,10 +43,78 @@ export default function Team() {
 
   return (
     <section id="team" className="relative py-32 bg-gradient-to-b from-primary to-primary-dark overflow-hidden">
-      {/* Decorative background elements */}
+      {/* Animated decorative background elements */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-accent-blue/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-purple/10 rounded-full blur-3xl" />
+        <motion.div
+          className="absolute top-20 left-10 w-72 h-72 bg-accent-blue/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, 60, 0],
+            y: [0, -40, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 16,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-accent-purple/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, -60, 0],
+            y: [0, 40, 0],
+            scale: [1, 1.15, 1],
+          }}
+          transition={{
+            duration: 19,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </div>
+
+      {/* Floating circles */}
+      <div className="absolute inset-0 overflow-hidden">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-3 h-3 rounded-full bg-gradient-to-br from-accent-blue/20 to-accent-purple/20"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -50, 0],
+              scale: [1, 1.5, 1],
+              opacity: [0.3, 0.6, 0.3],
+            }}
+            transition={{
+              duration: 5 + Math.random() * 5,
+              repeat: Infinity,
+              delay: Math.random() * 3,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Subtle wave pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: 'radial-gradient(circle, #8b5cf6 1px, transparent 1px)',
+            backgroundSize: '40px 40px',
+          }}
+          animate={{
+            backgroundPosition: ['0px 0px', '40px 40px'],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
