@@ -342,7 +342,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.3 }}
           className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight"
           style={{
-            color: '#f0f0f0',
+            color: 'rgba(240, 240, 240, 0.85)',
             textShadow: '0 2px 10px rgba(0, 0, 0, 0.7), 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 212, 255, 0.15)'
           }}
         >
