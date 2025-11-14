@@ -113,7 +113,10 @@ export default function About() {
   }, [])
 
   return (
-    <section id="about" className="relative py-32 overflow-hidden bg-gradient-to-b from-primary-dark to-primary">
+    <section id="about" className="relative pt-20 pb-32 overflow-hidden bg-gradient-to-b from-primary-dark via-primary to-primary">
+      {/* Smooth transition overlay from previous section */}
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-primary-dark/0 via-primary-dark/50 to-primary-dark/100 z-0" />
+
       {/* Animated Background decoration */}
       <div className="absolute inset-0 opacity-40">
         <motion.div

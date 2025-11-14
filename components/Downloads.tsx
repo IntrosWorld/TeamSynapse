@@ -57,7 +57,10 @@ export default function Downloads() {
   ]
 
   return (
-    <section id="downloads" className="relative py-32 bg-gradient-to-b from-primary-dark to-primary overflow-hidden">
+    <section id="downloads" className="relative pt-20 pb-32 bg-gradient-to-b from-primary via-primary-dark to-primary overflow-hidden">
+      {/* Smooth transition overlay from previous section */}
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-primary/0 via-primary/50 to-primary-dark/100 z-0" />
+
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-35">
         <motion.div

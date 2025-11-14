@@ -95,7 +95,10 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="relative py-32 bg-gradient-to-b from-primary to-primary-dark overflow-hidden">
+    <section id="contact" className="relative pt-20 pb-32 bg-gradient-to-b from-primary-dark via-primary to-primary-dark overflow-hidden">
+      {/* Smooth transition overlay from previous section */}
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-primary-dark/0 via-primary/50 to-primary/100 z-0" />
+
       {/* Animated background decoration */}
       <div className="absolute inset-0 opacity-40">
         <motion.div

@@ -47,7 +47,10 @@ export default function Team() {
   ]
 
   return (
-    <section id="team" className="relative py-32 bg-gradient-to-b from-primary to-primary-dark overflow-hidden">
+    <section id="team" className="relative pt-20 pb-32 bg-gradient-to-b from-primary via-primary to-primary-dark overflow-hidden">
+      {/* Smooth transition overlay from previous section */}
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/100 z-0" />
+
       {/* Animated decorative background elements */}
       <div className="absolute inset-0 opacity-45">
         <motion.div

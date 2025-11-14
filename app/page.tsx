@@ -48,10 +48,30 @@ export default function Home() {
 
       <Navbar />
       <Hero />
+
+      {/* Flowing section wrapper with smooth transitions */}
       <div className="relative z-10">
         <About />
+
+        {/* Connecting gradient wave between About and Downloads */}
+        <div className="relative h-24 -mt-12 -mb-12 z-20">
+          <div className="absolute inset-0 bg-gradient-to-b from-primary via-accent-purple/5 to-primary-dark opacity-50" />
+        </div>
+
         <Downloads />
+
+        {/* Connecting gradient wave between Downloads and Team */}
+        <div className="relative h-24 -mt-12 -mb-12 z-20">
+          <div className="absolute inset-0 bg-gradient-to-b from-primary via-accent-blue/5 to-primary opacity-50" />
+        </div>
+
         <Team />
+
+        {/* Connecting gradient wave between Team and Contact */}
+        <div className="relative h-24 -mt-12 -mb-12 z-20">
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-dark via-accent-cyan/5 to-primary opacity-50" />
+        </div>
+
         <Contact />
       </div>
       <Footer />
