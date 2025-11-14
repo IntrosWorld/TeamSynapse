@@ -3,7 +3,7 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
-import Projects from '@/components/Projects'
+import Downloads from '@/components/Downloads'
 import Team from '@/components/Team'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
@@ -52,7 +52,7 @@ export default function Home() {
       <Hero />
       <div className="relative z-10">
         <About />
-        <Projects />
+        <Downloads />
         <Team />
         <Contact />
       </div>

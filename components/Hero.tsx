@@ -372,10 +372,10 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <a
-            href="#projects"
+            href="#downloads"
             className="group relative inline-flex items-center gap-3 px-10 py-5 text-lg font-semibold glass rounded-full overflow-hidden hover:scale-105 transition-transform"
           >
-            <span className="relative z-10">Explore Projects</span>
+            <span className="relative z-10">Download App</span>
             <motion.span
               className="relative z-10 text-2xl"
               animate={{ x: [0, 5, 0] }}
