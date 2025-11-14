@@ -286,62 +286,108 @@ function EnhancedNeuralNetwork() {
         )
       })}
 
-      {/* Wheat Stalks - More Realistic */}
-      {Array.from({ length: 5 }).map((_, i) => {
-        const angle = (i / 5) * Math.PI * 2 + 0.5
-        const radius = 8
+      {/* Ultra-Realistic Wheat with Dense Heads */}
+      {Array.from({ length: 10 }).map((_, i) => {
+        const angle = (i / 10) * Math.PI * 2 + 0.5
+        const radius = 8 + Math.sin(i * 0.7) * 0.4
         const height = Math.cos(angle * 2) * 3
+        const scale = 0.9 + Math.random() * 0.2
 
         return (
           <group key={`wheat-${i}`} position={[
             Math.cos(angle) * radius,
             height,
             Math.sin(angle) * radius,
-          ]} rotation={[0, angle, Math.PI / 12]}>
-            {/* Main stalk - tapered */}
-            <mesh position={[0, 0, 0]}>
-              <cylinderGeometry args={[0.02, 0.04, 2.5, 8]} />
-              <meshStandardMaterial
-                color="#D4AF37"
-                emissive="#F4C430"
-                emissiveIntensity={0.2}
-                roughness={0.7}
-              />
-            </mesh>
-            {/* Wheat head - multiple grains */}
-            {[0, 1, 2, 3, 4].map((j) => (
-              <mesh
-                key={j}
-                position={[
-                  Math.sin(j * 0.5) * 0.08,
-                  1.2 + j * 0.12,
-                  Math.cos(j * 0.5) * 0.08
-                ]}
-                rotation={[0, j * 0.3, 0]}
-              >
-                <capsuleGeometry args={[0.04, 0.15, 4, 8]} />
+          ]} rotation={[0, angle, Math.sin(i * 1.5) * 0.12]} scale={scale}>
+            {/* Segmented stalk */}
+            {[0, 1, 2, 3].map((seg) => (
+              <mesh key={`stalk-${seg}`} position={[0, -1.2 + seg * 0.8, 0]}>
+                <cylinderGeometry args={[0.012 - seg * 0.002, 0.018 - seg * 0.002, 0.8, 16]} />
                 <meshStandardMaterial
-                  color="#E8C547"
-                  emissive="#FFD700"
-                  emissiveIntensity={0.25}
+                  color="#C4B28A"
+                  emissive="#9A8B5A"
+                  emissiveIntensity={0.12}
                   roughness={0.8}
+                  metalness={0.05}
                 />
               </mesh>
             ))}
-            {/* Awns (whiskers) */}
-            {[0, 1, 2].map((k) => (
+
+            {/* Dense grain head with 12 layers */}
+            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((j) => {
+              const yPos = 1.1 + j * 0.07
+              const thickness = Math.max(0, 1 - j * 0.08)
+
+              return (
+                <group key={j} position={[0, yPos, 0]}>
+                  {/* 4 grains per layer arranged in spiral */}
+                  {[0, 1, 2, 3].map((side) => {
+                    const sideAngle = (side / 4) * Math.PI * 2 + j * 0.5
+                    return (
+                      <mesh
+                        key={side}
+                        position={[
+                          Math.cos(sideAngle) * 0.055 * thickness,
+                          0,
+                          Math.sin(sideAngle) * 0.055 * thickness
+                        ]}
+                        rotation={[0, sideAngle, j * 0.1]}
+                      >
+                        <capsuleGeometry args={[0.018, 0.1, 8, 12]} />
+                        <meshStandardMaterial
+                          color="#F5DEB3"
+                          emissive="#FFD700"
+                          emissiveIntensity={0.35}
+                          roughness={0.9}
+                          metalness={0.02}
+                        />
+                      </mesh>
+                    )
+                  })}
+                  {/* 4 awns per layer */}
+                  {[0, 1, 2, 3].map((k) => {
+                    const awnAngle = (k / 4) * Math.PI * 2 + j * 0.5
+                    return (
+                      <mesh
+                        key={`awn-${k}`}
+                        position={[
+                          Math.cos(awnAngle) * 0.055 * thickness,
+                          0.05,
+                          Math.sin(awnAngle) * 0.055 * thickness
+                        ]}
+                        rotation={[Math.PI / 9 + j * 0.03, awnAngle, 0]}
+                      >
+                        <cylinderGeometry args={[0.001, 0.002, 0.45, 4]} />
+                        <meshStandardMaterial
+                          color="#D4A574"
+                          emissive="#E6BE8A"
+                          emissiveIntensity={0.15}
+                          transparent
+                          opacity={0.8}
+                        />
+                      </mesh>
+                    )
+                  })}
+                </group>
+              )
+            })}
+
+            {/* Leaves */}
+            {[0, 1].map((l) => (
               <mesh
-                key={`awn-${k}`}
-                position={[0, 1.8, 0]}
-                rotation={[Math.PI / 6 + k * 0.2, k * 1.0, 0]}
+                key={`leaf-${l}`}
+                position={[0, -0.4 + l * 0.5, 0]}
+                rotation={[Math.PI / 3.5, l * 2.2, 0]}
               >
-                <cylinderGeometry args={[0.005, 0.005, 0.6, 4]} />
+                <planeGeometry args={[0.06, 0.5]} />
                 <meshStandardMaterial
-                  color="#D4AF37"
-                  emissive="#F4C430"
-                  emissiveIntensity={0.2}
+                  color="#8B9F6B"
+                  emissive="#A3BE7A"
+                  emissiveIntensity={0.08}
+                  side={THREE.DoubleSide}
                   transparent
-                  opacity={0.7}
+                  opacity={0.88}
+                  roughness={0.85}
                 />
               </mesh>
             ))}
@@ -349,174 +395,238 @@ function EnhancedNeuralNetwork() {
         )
       })}
 
-      {/* Corn/Maize - More Realistic */}
-      {Array.from({ length: 3 }).map((_, i) => {
-        const angle = (i / 3) * Math.PI * 2 + 1.5
-        const radius = 9.5
+      {/* Ultra-Realistic Corn with Dense Kernels */}
+      {Array.from({ length: 5 }).map((_, i) => {
+        const angle = (i / 5) * Math.PI * 2 + 1.5
+        const radius = 9.5 + Math.cos(i * 0.9) * 0.3
         const height = Math.sin(angle * 2) * 2.5
+        const scale = 0.95 + Math.random() * 0.1
 
         return (
           <group key={`corn-${i}`} position={[
             Math.cos(angle) * radius,
             height,
             Math.sin(angle) * radius,
-          ]} rotation={[0, angle, 0]}>
-            {/* Corn cob with texture */}
+          ]} rotation={[0, angle, Math.sin(i) * 0.08]} scale={scale}>
+            {/* Main cob core with taper */}
             <mesh>
-              <cylinderGeometry args={[0.18, 0.2, 1.8, 20]} />
+              <cylinderGeometry args={[0.14, 0.16, 2.0, 24]} />
               <meshStandardMaterial
-                color="#FDD835"
-                emissive="#FFEB3B"
-                emissiveIntensity={0.25}
-                roughness={0.9}
+                color="#F5E6B3"
+                emissive="#FFD54F"
+                emissiveIntensity={0.18}
+                roughness={0.95}
               />
             </mesh>
-            {/* Kernel bumps */}
-            {[0, 1, 2, 3].map((row) =>
-              [0, 1, 2, 3, 4, 5].map((col) => (
+
+            {/* Dense kernel pattern - 8 rows × 14 columns */}
+            {[0, 1, 2, 3, 4, 5, 6, 7].map((row) =>
+              [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((col) => {
+                const rowAngle = (row / 8) * Math.PI * 2
+                const yPos = -0.9 + col * 0.135
+                const radiusAtPos = 0.15 + Math.sin(col * 0.3) * 0.01
+
+                return (
+                  <mesh
+                    key={`${row}-${col}`}
+                    position={[
+                      Math.cos(rowAngle) * radiusAtPos,
+                      yPos,
+                      Math.sin(rowAngle) * radiusAtPos
+                    ]}
+                    rotation={[0, rowAngle, 0]}
+                  >
+                    <boxGeometry args={[0.045, 0.12, 0.04]} />
+                    <meshStandardMaterial
+                      color="#FFE082"
+                      emissive="#FFEB3B"
+                      emissiveIntensity={0.25}
+                      roughness={0.92}
+                      metalness={0.01}
+                    />
+                  </mesh>
+                )
+              })
+            )}
+
+            {/* Multi-layer husks */}
+            {[0, 1, 2, 3, 4, 5].map((k) => {
+              const huskAngle = (k / 6) * Math.PI * 2
+              const huskOpen = k < 3 ? 0.12 : 0.08
+
+              return (
                 <mesh
-                  key={`${row}-${col}`}
+                  key={`husk-${k}`}
                   position={[
-                    Math.cos((col / 6) * Math.PI * 2) * 0.19,
-                    -0.7 + row * 0.35,
-                    Math.sin((col / 6) * Math.PI * 2) * 0.19
+                    Math.cos(huskAngle) * huskOpen,
+                    0.2,
+                    Math.sin(huskAngle) * huskOpen
                   ]}
+                  rotation={[0, huskAngle, (k < 3 ? Math.PI / 10 : Math.PI / 14)]}
                 >
-                  <sphereGeometry args={[0.035, 8, 8]} />
+                  <planeGeometry args={[0.38, 2.4]} />
                   <meshStandardMaterial
-                    color="#FFD54F"
-                    emissive="#FFEB3B"
-                    emissiveIntensity={0.2}
+                    color={k < 3 ? "#A5D6A7" : "#9CCC65"}
+                    emissive="#AED581"
+                    emissiveIntensity={0.12}
+                    side={THREE.DoubleSide}
+                    transparent
+                    opacity={k < 3 ? 0.8 : 0.88}
+                    roughness={0.9}
                   />
                 </mesh>
-              ))
-            )}
-            {/* Husks - multiple layers */}
-            {[0, 1, 2, 3].map((k) => (
-              <mesh
-                key={`husk-${k}`}
-                position={[
-                  Math.cos((k / 4) * Math.PI * 2) * 0.15,
-                  0.3,
-                  Math.sin((k / 4) * Math.PI * 2) * 0.15
-                ]}
-                rotation={[0, (k / 4) * Math.PI * 2, Math.PI / 8]}
-              >
-                <planeGeometry args={[0.4, 2.2]} />
-                <meshStandardMaterial
-                  color="#9CCC65"
-                  emissive="#AED581"
-                  emissiveIntensity={0.15}
-                  side={THREE.DoubleSide}
-                  transparent
-                  opacity={0.85}
-                  roughness={0.9}
-                />
-              </mesh>
-            ))}
-            {/* Silk strands */}
-            {[0, 1, 2, 3, 4].map((s) => (
+              )
+            })}
+
+            {/* Silk strands - more realistic */}
+            {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((s) => (
               <mesh
                 key={`silk-${s}`}
                 position={[
-                  Math.cos(s * 1.2) * 0.08,
-                  0.95,
-                  Math.sin(s * 1.2) * 0.08
+                  Math.cos(s * 0.8) * 0.06,
+                  1.05,
+                  Math.sin(s * 0.8) * 0.06
                 ]}
-                rotation={[Math.PI / 8 + s * 0.2, s * 0.6, 0]}
+                rotation={[Math.PI / 12 + s * 0.15, s * 0.7, 0]}
               >
-                <cylinderGeometry args={[0.003, 0.003, 0.4, 4]} />
+                <cylinderGeometry args={[0.002, 0.003, 0.35, 4]} />
                 <meshStandardMaterial
-                  color="#C5A880"
-                  emissive="#D4AF37"
-                  emissiveIntensity={0.1}
+                  color="#D4C5A9"
+                  emissive="#E6D4BA"
+                  emissiveIntensity={0.08}
                   transparent
-                  opacity={0.6}
+                  opacity={0.7}
                 />
               </mesh>
             ))}
+
+            {/* Stalk */}
+            <mesh position={[0, -1.4, 0]}>
+              <cylinderGeometry args={[0.08, 0.1, 0.8, 12]} />
+              <meshStandardMaterial
+                color="#8BC34A"
+                emissive="#9CCC65"
+                emissiveIntensity={0.1}
+                roughness={0.85}
+              />
+            </mesh>
           </group>
         )
       })}
 
-      {/* Rice Plants - More Realistic */}
-      {Array.from({ length: 6 }).map((_, i) => {
-        const angle = (i / 6) * Math.PI * 2 + 2
-        const radius = 10.5
+      {/* Ultra-Realistic Rice with Full Panicles */}
+      {Array.from({ length: 8 }).map((_, i) => {
+        const angle = (i / 8) * Math.PI * 2 + 2
+        const radius = 10.5 + Math.sin(i * 1.1) * 0.3
         const height = Math.sin(angle * 4) * 3
+        const scale = 0.9 + Math.random() * 0.15
 
         return (
           <group key={`rice-${i}`} position={[
             Math.cos(angle) * radius,
             height,
             Math.sin(angle) * radius,
-          ]}>
-            {/* Main stem */}
-            <mesh>
-              <cylinderGeometry args={[0.02, 0.025, 2.2, 8]} />
-              <meshStandardMaterial
-                color="#7CB342"
-                emissive="#8BC34A"
-                emissiveIntensity={0.2}
-                roughness={0.8}
-              />
-            </mesh>
-            {/* Rice panicle (drooping grains) */}
-            {[0, 1, 2, 3, 4, 5].map((j) => {
-              const panicleAngle = (j / 6) * Math.PI * 2
-              const droop = j * 0.08
-              return (
-                <group key={j} position={[0, 1.0 - droop, 0]}>
-                  {/* Grain stem */}
-                  <mesh
-                    position={[
-                      Math.cos(panicleAngle) * 0.12,
-                      -droop,
-                      Math.sin(panicleAngle) * 0.12
-                    ]}
-                    rotation={[panicleAngle * 0.3, 0, panicleAngle]}
-                  >
-                    <cylinderGeometry args={[0.008, 0.008, 0.3, 4]} />
-                    <meshStandardMaterial
-                      color="#9CCC65"
-                      emissive="#AED581"
-                      emissiveIntensity={0.15}
-                    />
-                  </mesh>
-                  {/* Rice grain */}
-                  <mesh
-                    position={[
-                      Math.cos(panicleAngle) * 0.15,
-                      -0.15 - droop,
-                      Math.sin(panicleAngle) * 0.15
-                    ]}
-                  >
-                    <capsuleGeometry args={[0.025, 0.08, 4, 8]} />
-                    <meshStandardMaterial
-                      color="#FFF9C4"
-                      emissive="#FFEB3B"
-                      emissiveIntensity={0.25}
-                      roughness={0.9}
-                    />
-                  </mesh>
-                </group>
-              )
-            })}
-            {/* Leaves */}
-            {[0, 1, 2].map((l) => (
-              <mesh
-                key={`leaf-${l}`}
-                position={[0, 0.4 + l * 0.5, 0]}
-                rotation={[Math.PI / 3, l * 2.1, 0]}
-              >
-                <planeGeometry args={[0.15, 0.8]} />
+          ]} rotation={[0, angle, 0]} scale={scale}>
+            {/* Multi-segment stem */}
+            {[0, 1, 2].map((seg) => (
+              <mesh key={`stem-${seg}`} position={[0, -0.4 + seg * 0.8, 0]}>
+                <cylinderGeometry args={[0.014 - seg * 0.002, 0.018 - seg * 0.002, 0.8, 12]} />
                 <meshStandardMaterial
                   color="#7CB342"
                   emissive="#8BC34A"
-                  emissiveIntensity={0.2}
+                  emissiveIntensity={0.15}
+                  roughness={0.85}
+                />
+              </mesh>
+            ))}
+
+            {/* Dense panicle with 12 grain clusters */}
+            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((j) => {
+              const panicleAngle = (j / 12) * Math.PI * 2
+              const droop = j * 0.06 + 0.1
+              const lengthFactor = 1 - j * 0.04
+
+              return (
+                <group key={j} position={[0, 1.1 - droop * 0.5, 0]}>
+                  {/* Branch stem */}
+                  <mesh
+                    position={[
+                      Math.cos(panicleAngle) * 0.08 * lengthFactor,
+                      -droop * 0.8,
+                      Math.sin(panicleAngle) * 0.08 * lengthFactor
+                    ]}
+                    rotation={[panicleAngle * 0.25 + Math.PI / 6, 0, panicleAngle]}
+                  >
+                    <cylinderGeometry args={[0.004, 0.006, 0.25 * lengthFactor, 4]} />
+                    <meshStandardMaterial
+                      color="#A5D6A7"
+                      emissive="#AED581"
+                      emissiveIntensity={0.12}
+                      roughness={0.88}
+                    />
+                  </mesh>
+
+                  {/* Multiple grains per branch */}
+                  {[0, 1, 2].map((g) => (
+                    <mesh
+                      key={g}
+                      position={[
+                        Math.cos(panicleAngle + g * 0.3) * (0.12 + g * 0.02) * lengthFactor,
+                        -droop - g * 0.04,
+                        Math.sin(panicleAngle + g * 0.3) * (0.12 + g * 0.02) * lengthFactor
+                      ]}
+                      rotation={[Math.PI / 12, panicleAngle, 0]}
+                    >
+                      <capsuleGeometry args={[0.018, 0.07, 6, 10]} />
+                      <meshStandardMaterial
+                        color="#FFF9C4"
+                        emissive="#FFEB3B"
+                        emissiveIntensity={0.3}
+                        roughness={0.92}
+                        metalness={0.01}
+                      />
+                    </mesh>
+                  ))}
+                </group>
+              )
+            })}
+
+            {/* Long leaves at different heights */}
+            {[0, 1, 2, 3].map((l) => (
+              <mesh
+                key={`leaf-${l}`}
+                position={[0, 0.3 + l * 0.45, 0]}
+                rotation={[Math.PI / 3.2 + l * 0.1, l * 1.9, 0]}
+              >
+                <planeGeometry args={[0.12, 0.75]} />
+                <meshStandardMaterial
+                  color="#7CB342"
+                  emissive="#8BC34A"
+                  emissiveIntensity={0.15}
                   side={THREE.DoubleSide}
                   transparent
-                  opacity={0.9}
+                  opacity={0.92}
+                  roughness={0.88}
+                />
+              </mesh>
+            ))}
+
+            {/* Additional blade leaves */}
+            {[0, 1].map((b) => (
+              <mesh
+                key={`blade-${b}`}
+                position={[0, 1.4 + b * 0.1, 0]}
+                rotation={[Math.PI / 6, b * Math.PI, 0]}
+              >
+                <planeGeometry args={[0.08, 0.4]} />
+                <meshStandardMaterial
+                  color="#8BC34A"
+                  emissive="#9CCC65"
+                  emissiveIntensity={0.1}
+                  side={THREE.DoubleSide}
+                  transparent
+                  opacity={0.85}
+                  roughness={0.9}
                 />
               </mesh>
             ))}
