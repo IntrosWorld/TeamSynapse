@@ -8,9 +8,19 @@ export default function Team() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+
+    // Detect mobile device
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   const teams = [
@@ -84,13 +94,14 @@ export default function Team() {
       {/* Floating circles */}
       {mounted && (
         <div className="absolute inset-0 overflow-hidden">
-          {Array.from({ length: 30 }).map((_, i) => (
+          {Array.from({ length: isMobile ? 8 : 30 }).map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-4 h-4 rounded-full bg-gradient-to-br from-accent-blue/50 to-accent-purple/50 shadow-lg shadow-accent-purple/40"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
+                willChange: 'transform, opacity',
               }}
               animate={{
                 y: [0, -60, 0],
@@ -185,21 +196,24 @@ export default function Team() {
                         <div className="absolute inset-0 rounded-full ring-2 ring-white/10" />
 
                         {/* Rotating gradient halo with glow */}
-                        <motion.div
-                          className="absolute inset-0 rounded-full"
-                          style={{
-                            background: 'conic-gradient(from 0deg, transparent 0deg, transparent 300deg, #00d4ff 320deg, #8b5cf6 340deg, #06b6d4 350deg, #00d4ff 360deg, transparent 380deg, transparent 720deg)',
-                            filter: 'blur(2px)',
-                          }}
-                          animate={{
-                            rotate: 360,
-                          }}
-                          transition={{
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: "linear"
-                          }}
-                        />
+                        {!isMobile && (
+                          <motion.div
+                            className="absolute inset-0 rounded-full"
+                            style={{
+                              background: 'conic-gradient(from 0deg, transparent 0deg, transparent 300deg, #00d4ff 320deg, #8b5cf6 340deg, #06b6d4 350deg, #00d4ff 360deg, transparent 380deg, transparent 720deg)',
+                              filter: 'blur(2px)',
+                              willChange: 'transform',
+                            }}
+                            animate={{
+                              rotate: 360,
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              ease: "linear"
+                            }}
+                          />
+                        )}
 
                         {/* Image container */}
                         <div className="absolute inset-[4px] rounded-full bg-primary overflow-hidden">

@@ -107,9 +107,19 @@ export default function About() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+
+    // Detect mobile device
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   return (
@@ -150,13 +160,14 @@ export default function About() {
       {/* Floating particles */}
       {mounted && (
         <div className="absolute inset-0 overflow-hidden">
-          {Array.from({ length: 40 }).map((_, i) => (
+          {Array.from({ length: isMobile ? 10 : 40 }).map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-2 h-2 bg-accent-blue/60 rounded-full shadow-lg shadow-accent-blue/50"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
+                willChange: 'transform, opacity',
               }}
               animate={{
                 y: [0, -40, 0],
