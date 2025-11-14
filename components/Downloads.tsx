@@ -7,9 +7,19 @@ export default function Downloads() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+
+    // Detect mobile device
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   const platforms = [
@@ -94,7 +104,7 @@ export default function Downloads() {
       {/* Floating geometric shapes */}
       {mounted && (
         <div className="absolute inset-0 overflow-hidden">
-          {Array.from({ length: 35 }).map((_, i) => (
+          {Array.from({ length: isMobile ? 8 : 35 }).map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-3 h-3 border-2 border-accent-cyan/50 shadow-lg shadow-accent-cyan/30"
@@ -102,6 +112,7 @@ export default function Downloads() {
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
                 rotate: Math.random() * 360,
+                willChange: 'transform, opacity',
               }}
               animate={{
                 y: [0, -50, 0],

@@ -9,9 +9,19 @@ export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+
+    // Detect mobile device
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -132,13 +142,14 @@ export default function Contact() {
       {/* Floating plus signs */}
       {mounted && (
         <div className="absolute inset-0 overflow-hidden">
-          {Array.from({ length: 25 }).map((_, i) => (
+          {Array.from({ length: isMobile ? 6 : 25 }).map((_, i) => (
             <motion.div
               key={i}
               className="absolute text-accent-cyan/60 text-2xl font-bold drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
+                willChange: 'transform, opacity',
               }}
               animate={{
                 y: [0, -70, 0],
