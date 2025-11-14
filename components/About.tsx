@@ -127,7 +127,7 @@ export default function About() {
             scale: [1, 1.2, 1],
           }}
           transition={{
-            duration: 20,
+            duration: 12,
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -140,7 +140,7 @@ export default function About() {
             scale: [1, 1.3, 1],
           }}
           transition={{
-            duration: 25,
+            duration: 15,
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -150,7 +150,7 @@ export default function About() {
       {/* Floating particles */}
       {mounted && (
         <div className="absolute inset-0 overflow-hidden">
-          {Array.from({ length: 20 }).map((_, i) => (
+          {Array.from({ length: 40 }).map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-2 h-2 bg-accent-blue/60 rounded-full shadow-lg shadow-accent-blue/50"
@@ -159,13 +159,13 @@ export default function About() {
                 top: `${Math.random() * 100}%`,
               }}
               animate={{
-                y: [0, -30, 0],
+                y: [0, -40, 0],
                 opacity: [0.4, 0.8, 0.4],
               }}
               transition={{
-                duration: 3 + Math.random() * 4,
+                duration: 2 + Math.random() * 2,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: Math.random() * 1,
                 ease: "easeInOut"
               }}
             />
@@ -185,7 +185,7 @@ export default function About() {
             backgroundPosition: ['0px 0px', '50px 50px'],
           }}
           transition={{
-            duration: 20,
+            duration: 10,
             repeat: Infinity,
             ease: "linear"
           }}

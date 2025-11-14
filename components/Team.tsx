@@ -61,7 +61,7 @@ export default function Team() {
             scale: [1, 1.2, 1],
           }}
           transition={{
-            duration: 16,
+            duration: 9,
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -74,7 +74,7 @@ export default function Team() {
             scale: [1, 1.15, 1],
           }}
           transition={{
-            duration: 19,
+            duration: 11,
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -84,7 +84,7 @@ export default function Team() {
       {/* Floating circles */}
       {mounted && (
         <div className="absolute inset-0 overflow-hidden">
-          {Array.from({ length: 12 }).map((_, i) => (
+          {Array.from({ length: 30 }).map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-4 h-4 rounded-full bg-gradient-to-br from-accent-blue/50 to-accent-purple/50 shadow-lg shadow-accent-purple/40"
@@ -93,14 +93,14 @@ export default function Team() {
                 top: `${Math.random() * 100}%`,
               }}
               animate={{
-                y: [0, -50, 0],
+                y: [0, -60, 0],
                 scale: [1, 1.5, 1],
                 opacity: [0.5, 0.9, 0.5],
               }}
               transition={{
-                duration: 5 + Math.random() * 5,
+                duration: 2.5 + Math.random() * 2.5,
                 repeat: Infinity,
-                delay: Math.random() * 3,
+                delay: Math.random() * 1.5,
                 ease: "easeInOut"
               }}
             />
@@ -120,7 +120,7 @@ export default function Team() {
             backgroundPosition: ['0px 0px', '40px 40px'],
           }}
           transition={{
-            duration: 15,
+            duration: 8,
             repeat: Infinity,
             ease: "linear"
           }}

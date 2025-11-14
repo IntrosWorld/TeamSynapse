@@ -71,7 +71,7 @@ export default function Downloads() {
             scale: [1, 1.3, 1],
           }}
           transition={{
-            duration: 18,
+            duration: 10,
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -84,7 +84,7 @@ export default function Downloads() {
             scale: [1, 1.2, 1],
           }}
           transition={{
-            duration: 22,
+            duration: 13,
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -94,7 +94,7 @@ export default function Downloads() {
       {/* Floating geometric shapes */}
       {mounted && (
         <div className="absolute inset-0 overflow-hidden">
-          {Array.from({ length: 15 }).map((_, i) => (
+          {Array.from({ length: 35 }).map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-3 h-3 border-2 border-accent-cyan/50 shadow-lg shadow-accent-cyan/30"
@@ -104,14 +104,14 @@ export default function Downloads() {
                 rotate: Math.random() * 360,
               }}
               animate={{
-                y: [0, -40, 0],
+                y: [0, -50, 0],
                 rotate: [0, 180, 360],
                 opacity: [0.3, 0.7, 0.3],
               }}
               transition={{
-                duration: 4 + Math.random() * 6,
+                duration: 2 + Math.random() * 3,
                 repeat: Infinity,
-                delay: Math.random() * 3,
+                delay: Math.random() * 1.5,
                 ease: "easeInOut"
               }}
             />

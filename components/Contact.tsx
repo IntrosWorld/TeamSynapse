@@ -109,7 +109,7 @@ export default function Contact() {
             scale: [1, 1.25, 1],
           }}
           transition={{
-            duration: 17,
+            duration: 10,
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -122,7 +122,7 @@ export default function Contact() {
             scale: [1, 1.2, 1],
           }}
           transition={{
-            duration: 21,
+            duration: 13,
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -132,7 +132,7 @@ export default function Contact() {
       {/* Floating plus signs */}
       {mounted && (
         <div className="absolute inset-0 overflow-hidden">
-          {Array.from({ length: 8 }).map((_, i) => (
+          {Array.from({ length: 25 }).map((_, i) => (
             <motion.div
               key={i}
               className="absolute text-accent-cyan/60 text-2xl font-bold drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]"
@@ -141,14 +141,14 @@ export default function Contact() {
                 top: `${Math.random() * 100}%`,
               }}
               animate={{
-                y: [0, -60, 0],
+                y: [0, -70, 0],
                 rotate: [0, 90, 0],
                 opacity: [0.4, 0.8, 0.4],
               }}
               transition={{
-                duration: 6 + Math.random() * 4,
+                duration: 3 + Math.random() * 2,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: Math.random() * 1,
                 ease: "easeInOut"
               }}
             >
@@ -170,7 +170,7 @@ export default function Contact() {
             backgroundPosition: ['0px 0px', '30px 30px'],
           }}
           transition={{
-            duration: 12,
+            duration: 6,
             repeat: Infinity,
             ease: "linear"
           }}
