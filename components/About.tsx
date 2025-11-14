@@ -115,9 +115,9 @@ export default function About() {
   return (
     <section id="about" className="relative py-32 overflow-hidden bg-gradient-to-b from-primary-dark to-primary">
       {/* Animated Background decoration */}
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-40">
         <motion.div
-          className="absolute top-1/4 right-0 w-96 h-96 bg-accent-purple/20 rounded-full blur-3xl"
+          className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-accent-purple/40 rounded-full blur-3xl"
           animate={{
             x: [0, 100, 0],
             y: [0, -50, 0],
@@ -130,7 +130,7 @@ export default function About() {
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 left-0 w-96 h-96 bg-accent-cyan/20 rounded-full blur-3xl"
+          className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-accent-cyan/40 rounded-full blur-3xl"
           animate={{
             x: [0, -100, 0],
             y: [0, 50, 0],
@@ -150,14 +150,14 @@ export default function About() {
           {Array.from({ length: 20 }).map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-accent-blue/30 rounded-full"
+              className="absolute w-2 h-2 bg-accent-blue/60 rounded-full shadow-lg shadow-accent-blue/50"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
               }}
               animate={{
                 y: [0, -30, 0],
-                opacity: [0.2, 0.5, 0.2],
+                opacity: [0.4, 0.8, 0.4],
               }}
               transition={{
                 duration: 3 + Math.random() * 4,
@@ -171,7 +171,7 @@ export default function About() {
       )}
 
       {/* Animated grid lines */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-10">
         <motion.div
           className="absolute inset-0"
           style={{

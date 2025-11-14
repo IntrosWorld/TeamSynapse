@@ -49,9 +49,9 @@ export default function Team() {
   return (
     <section id="team" className="relative py-32 bg-gradient-to-b from-primary to-primary-dark overflow-hidden">
       {/* Animated decorative background elements */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-45">
         <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-accent-blue/10 rounded-full blur-3xl"
+          className="absolute top-20 left-10 w-[450px] h-[450px] bg-accent-blue/35 rounded-full blur-3xl"
           animate={{
             x: [0, 60, 0],
             y: [0, -40, 0],
@@ -64,7 +64,7 @@ export default function Team() {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-accent-purple/10 rounded-full blur-3xl"
+          className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-accent-purple/35 rounded-full blur-3xl"
           animate={{
             x: [0, -60, 0],
             y: [0, 40, 0],
@@ -84,7 +84,7 @@ export default function Team() {
           {Array.from({ length: 12 }).map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-3 h-3 rounded-full bg-gradient-to-br from-accent-blue/20 to-accent-purple/20"
+              className="absolute w-4 h-4 rounded-full bg-gradient-to-br from-accent-blue/50 to-accent-purple/50 shadow-lg shadow-accent-purple/40"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -92,7 +92,7 @@ export default function Team() {
               animate={{
                 y: [0, -50, 0],
                 scale: [1, 1.5, 1],
-                opacity: [0.3, 0.6, 0.3],
+                opacity: [0.5, 0.9, 0.5],
               }}
               transition={{
                 duration: 5 + Math.random() * 5,
@@ -106,7 +106,7 @@ export default function Team() {
       )}
 
       {/* Subtle wave pattern */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-10">
         <motion.div
           className="absolute inset-0"
           style={{

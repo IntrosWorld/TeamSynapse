@@ -97,9 +97,9 @@ export default function Contact() {
   return (
     <section id="contact" className="relative py-32 bg-gradient-to-b from-primary to-primary-dark overflow-hidden">
       {/* Animated background decoration */}
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-40">
         <motion.div
-          className="absolute top-1/3 left-0 w-96 h-96 bg-accent-blue/20 rounded-full blur-3xl"
+          className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-accent-blue/40 rounded-full blur-3xl"
           animate={{
             x: [0, 80, 0],
             y: [0, -60, 0],
@@ -112,7 +112,7 @@ export default function Contact() {
           }}
         />
         <motion.div
-          className="absolute bottom-1/3 right-0 w-96 h-96 bg-accent-purple/20 rounded-full blur-3xl"
+          className="absolute bottom-1/3 right-0 w-[500px] h-[500px] bg-accent-purple/40 rounded-full blur-3xl"
           animate={{
             x: [0, -80, 0],
             y: [0, 60, 0],
@@ -132,7 +132,7 @@ export default function Contact() {
           {Array.from({ length: 8 }).map((_, i) => (
             <motion.div
               key={i}
-              className="absolute text-accent-cyan/20 text-xl font-bold"
+              className="absolute text-accent-cyan/60 text-2xl font-bold drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -140,7 +140,7 @@ export default function Contact() {
               animate={{
                 y: [0, -60, 0],
                 rotate: [0, 90, 0],
-                opacity: [0.2, 0.4, 0.2],
+                opacity: [0.4, 0.8, 0.4],
               }}
               transition={{
                 duration: 6 + Math.random() * 4,
@@ -156,7 +156,7 @@ export default function Contact() {
       )}
 
       {/* Animated lines */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-10">
         <motion.div
           className="absolute inset-0"
           style={{

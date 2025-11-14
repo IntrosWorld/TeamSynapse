@@ -59,9 +59,9 @@ export default function Downloads() {
   return (
     <section id="downloads" className="relative py-32 bg-gradient-to-b from-primary-dark to-primary overflow-hidden">
       {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-35">
         <motion.div
-          className="absolute top-1/3 left-1/4 w-96 h-96 bg-accent-blue/30 rounded-full blur-3xl"
+          className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-accent-blue/45 rounded-full blur-3xl"
           animate={{
             x: [0, -80, 0],
             y: [0, 80, 0],
@@ -74,7 +74,7 @@ export default function Downloads() {
           }}
         />
         <motion.div
-          className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-accent-purple/30 rounded-full blur-3xl"
+          className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-accent-purple/45 rounded-full blur-3xl"
           animate={{
             x: [0, 80, 0],
             y: [0, -80, 0],
@@ -94,7 +94,7 @@ export default function Downloads() {
           {Array.from({ length: 15 }).map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-2 h-2 border border-accent-cyan/20"
+              className="absolute w-3 h-3 border-2 border-accent-cyan/50 shadow-lg shadow-accent-cyan/30"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -103,7 +103,7 @@ export default function Downloads() {
               animate={{
                 y: [0, -40, 0],
                 rotate: [0, 180, 360],
-                opacity: [0.1, 0.3, 0.1],
+                opacity: [0.3, 0.7, 0.3],
               }}
               transition={{
                 duration: 4 + Math.random() * 6,
