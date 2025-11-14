@@ -285,6 +285,150 @@ function EnhancedNeuralNetwork() {
           </Sphere>
         )
       })}
+
+      {/* Farming Elements - Wheat Stalks */}
+      {Array.from({ length: 6 }).map((_, i) => {
+        const angle = (i / 6) * Math.PI * 2 + 0.5
+        const radius = 8
+        const height = Math.cos(angle * 2) * 3
+
+        return (
+          <group key={`wheat-${i}`} position={[
+            Math.cos(angle) * radius,
+            height,
+            Math.sin(angle) * radius,
+          ]}>
+            {/* Wheat stalk */}
+            <mesh>
+              <cylinderGeometry args={[0.05, 0.05, 2, 8]} />
+              <meshStandardMaterial
+                color="#DAA520"
+                emissive="#FFD700"
+                emissiveIntensity={0.3}
+              />
+            </mesh>
+            {/* Wheat grain */}
+            <mesh position={[0, 1.2, 0]}>
+              <sphereGeometry args={[0.15, 16, 16]} />
+              <meshStandardMaterial
+                color="#F4A460"
+                emissive="#FFD700"
+                emissiveIntensity={0.4}
+              />
+            </mesh>
+          </group>
+        )
+      })}
+
+      {/* Corn/Maize */}
+      {Array.from({ length: 4 }).map((_, i) => {
+        const angle = (i / 4) * Math.PI * 2 + 1.5
+        const radius = 9
+        const height = Math.sin(angle * 2) * 2.5
+
+        return (
+          <group key={`corn-${i}`} position={[
+            Math.cos(angle) * radius,
+            height,
+            Math.sin(angle) * radius,
+          ]} rotation={[0, angle, 0]}>
+            {/* Corn cob */}
+            <mesh>
+              <cylinderGeometry args={[0.2, 0.15, 1.5, 16]} />
+              <meshStandardMaterial
+                color="#FFEB3B"
+                emissive="#FFC107"
+                emissiveIntensity={0.3}
+                roughness={0.6}
+              />
+            </mesh>
+            {/* Corn leaves */}
+            <mesh position={[0, 0.8, 0]} rotation={[0, 0, Math.PI / 6]}>
+              <planeGeometry args={[0.5, 1.2]} />
+              <meshStandardMaterial
+                color="#4CAF50"
+                emissive="#66BB6A"
+                emissiveIntensity={0.2}
+                side={THREE.DoubleSide}
+              />
+            </mesh>
+            <mesh position={[0, 0.8, 0]} rotation={[0, 0, -Math.PI / 6]}>
+              <planeGeometry args={[0.5, 1.2]} />
+              <meshStandardMaterial
+                color="#4CAF50"
+                emissive="#66BB6A"
+                emissiveIntensity={0.2}
+                side={THREE.DoubleSide}
+              />
+            </mesh>
+          </group>
+        )
+      })}
+
+      {/* Rice Grains */}
+      {Array.from({ length: 8 }).map((_, i) => {
+        const angle = (i / 8) * Math.PI * 2 + 2
+        const radius = 10
+        const height = Math.sin(angle * 4) * 3
+
+        return (
+          <group key={`rice-${i}`} position={[
+            Math.cos(angle) * radius,
+            height,
+            Math.sin(angle) * radius,
+          ]}>
+            {/* Rice plant stem */}
+            <mesh>
+              <cylinderGeometry args={[0.03, 0.03, 1.8, 8]} />
+              <meshStandardMaterial
+                color="#8BC34A"
+                emissive="#9CCC65"
+                emissiveIntensity={0.2}
+              />
+            </mesh>
+            {/* Rice grains cluster */}
+            {[0, 1, 2].map((j) => (
+              <mesh key={j} position={[Math.cos(j) * 0.1, 0.9 + j * 0.1, Math.sin(j) * 0.1]}>
+                <sphereGeometry args={[0.08, 12, 12]} />
+                <meshStandardMaterial
+                  color="#FFF9C4"
+                  emissive="#FFEB3B"
+                  emissiveIntensity={0.3}
+                />
+              </mesh>
+            ))}
+          </group>
+        )
+      })}
+
+      {/* Leaves */}
+      {Array.from({ length: 10 }).map((_, i) => {
+        const angle = (i / 10) * Math.PI * 2
+        const radius = 7.5
+        const height = Math.cos(angle * 5) * 2
+
+        return (
+          <mesh
+            key={`leaf-${i}`}
+            position={[
+              Math.cos(angle) * radius,
+              height,
+              Math.sin(angle) * radius,
+            ]}
+            rotation={[Math.PI / 4, angle, 0]}
+          >
+            <planeGeometry args={[0.6, 0.8]} />
+            <meshStandardMaterial
+              color="#4CAF50"
+              emissive="#66BB6A"
+              emissiveIntensity={0.3}
+              side={THREE.DoubleSide}
+              transparent
+              opacity={0.8}
+            />
+          </mesh>
+        )
+      })}
     </group>
   )
 }
