@@ -37,6 +37,7 @@
     background-color: var(--color-primary);
     color: white;
     overflow-x: hidden;
+    cursor: none;
   }
 
   html {
