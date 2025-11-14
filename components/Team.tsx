@@ -179,18 +179,39 @@ export default function Team() {
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent-blue via-accent-purple to-accent-cyan opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
 
                     <div className="relative z-10">
-                      {/* Profile Image */}
-                      <div className="relative w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full ring-4 ring-white/10 group-hover:ring-accent-blue/50 transition-all duration-300">
-                        <Image
-                          src={member.image}
-                          alt={member.name}
-                          width={128}
-                          height={128}
-                          className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500"
-                          unoptimized
-                        />
-                        {/* Overlay gradient on hover */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-accent-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      {/* Profile Image with Rotating Gradient Border */}
+                      <div className="relative w-32 h-32 mx-auto mb-4">
+                        {/* Rotating gradient border */}
+                        <motion.div
+                          className="absolute inset-0 rounded-full p-[3px]"
+                          style={{
+                            background: 'conic-gradient(from 0deg, #00d4ff, #8b5cf6, #06b6d4, #00d4ff)',
+                          }}
+                          animate={{
+                            rotate: 360,
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "linear"
+                          }}
+                        >
+                          {/* Inner container for image */}
+                          <div className="w-full h-full rounded-full bg-primary p-1">
+                            <div className="relative w-full h-full overflow-hidden rounded-full">
+                              <Image
+                                src={member.image}
+                                alt={member.name}
+                                width={128}
+                                height={128}
+                                className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500"
+                                unoptimized
+                              />
+                              {/* Overlay gradient on hover */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-accent-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            </div>
+                          </div>
+                        </motion.div>
                       </div>
 
                       {/* Member Info */}
