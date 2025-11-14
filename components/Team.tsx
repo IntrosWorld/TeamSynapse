@@ -179,16 +179,17 @@ export default function Team() {
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent-blue via-accent-purple to-accent-cyan opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
 
                     <div className="relative z-10">
-                      {/* Profile Image with Rotating Halo Border */}
+                      {/* Profile Image with Rotating Gradient Halo */}
                       <div className="relative w-32 h-32 mx-auto mb-4">
                         {/* Base border */}
-                        <div className="absolute inset-0 rounded-full ring-4 ring-white/10" />
+                        <div className="absolute inset-0 rounded-full ring-2 ring-white/10" />
 
-                        {/* Rotating colored halo */}
+                        {/* Rotating gradient halo with glow */}
                         <motion.div
                           className="absolute inset-0 rounded-full"
                           style={{
-                            background: 'conic-gradient(from 0deg, transparent 0deg, transparent 320deg, #00d4ff 340deg, #8b5cf6 360deg, transparent 380deg, transparent 720deg)',
+                            background: 'conic-gradient(from 0deg, transparent 0deg, transparent 300deg, #00d4ff 320deg, #8b5cf6 340deg, #06b6d4 350deg, #00d4ff 360deg, transparent 380deg, transparent 720deg)',
+                            filter: 'blur(2px)',
                           }}
                           animate={{
                             rotate: 360,
@@ -207,7 +208,7 @@ export default function Team() {
                             alt={member.name}
                             width={128}
                             height={128}
-                            className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500"
+                            className="object-cover w-full h-full transition-all duration-500"
                             unoptimized
                           />
                           {/* Overlay gradient on hover */}
