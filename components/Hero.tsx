@@ -342,9 +342,8 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.3 }}
           className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight"
           style={{
-            color: '#ffffff',
-            textShadow: '0 0 60px rgba(0, 0, 0, 1), 0 0 30px rgba(0, 0, 0, 0.9), 0 4px 10px rgba(0, 0, 0, 0.8), 0 0 100px rgba(0, 212, 255, 0.3)',
-            filter: 'drop-shadow(0 0 20px rgba(0, 0, 0, 0.9))'
+            color: '#f0f0f0',
+            textShadow: '0 2px 10px rgba(0, 0, 0, 0.7), 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 212, 255, 0.15)'
           }}
         >
           Offline AI for
@@ -358,9 +357,8 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.5 }}
           className="text-xl md:text-2xl lg:text-3xl mb-12 max-w-4xl mx-auto leading-relaxed"
           style={{
-            color: '#ffffff',
-            textShadow: '0 0 40px rgba(0, 0, 0, 1), 0 2px 10px rgba(0, 0, 0, 0.9)',
-            filter: 'drop-shadow(0 0 15px rgba(0, 0, 0, 0.9))'
+            color: '#e0e0e0',
+            textShadow: '0 2px 8px rgba(0, 0, 0, 0.6), 0 4px 15px rgba(0, 0, 0, 0.4)'
           }}
         >
           Meet the team behind <span className="gradient-text font-semibold">India's first offline farmer-query LLM</span>
