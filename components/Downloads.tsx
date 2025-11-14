@@ -1,11 +1,16 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 export default function Downloads() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const platforms = [
     {
@@ -84,30 +89,32 @@ export default function Downloads() {
       </div>
 
       {/* Floating geometric shapes */}
-      <div className="absolute inset-0 overflow-hidden">
-        {Array.from({ length: 15 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 border border-accent-cyan/20"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              rotate: Math.random() * 360,
-            }}
-            animate={{
-              y: [0, -40, 0],
-              rotate: [0, 180, 360],
-              opacity: [0.1, 0.3, 0.1],
-            }}
-            transition={{
-              duration: 4 + Math.random() * 6,
-              repeat: Infinity,
-              delay: Math.random() * 3,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
-      </div>
+      {mounted && (
+        <div className="absolute inset-0 overflow-hidden">
+          {Array.from({ length: 15 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 border border-accent-cyan/20"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                rotate: Math.random() * 360,
+              }}
+              animate={{
+                y: [0, -40, 0],
+                rotate: [0, 180, 360],
+                opacity: [0.1, 0.3, 0.1],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 6,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.h2
